@@ -92,26 +92,28 @@ def checkout_items(items: list[LibraryItem], user: str) -> list[str]:
             item.user = user
             results.append(item.checkout()) #Agrega un resultado checkeando el item 
         except Exception as e:
-            results.append(f"Error salida: {e}") #
+            results.append(f"Error salida: {e}") 
     return results
 
+#Funcion para contar items
 def count_items(items: list[LibraryItem]) -> dict:
-    contar = {
+    contar = {   #Creo un diccionario que cuenta los libros y revistas
         "books": 0,
         "magazines": 0
     }
-    for item in items:
+    for item in items: 
         if isinstance(item, Book):
-            contar["books"] += 1
+            contar["books"] += 1 #Si es instancia "Book" lo agrega
         elif isinstance(item, Magazine):
-            contar["magazines"] += 1
+            contar["magazines"] += 1 #Si es revista tambien lo agrega
     return contar
 
+#Funcion para encontrar por el titulo
 def find_by_title(items: list[LibraryItem], keyword: str) -> list[LibraryItem]:
-    encontrar_item = []
+    encontrar_item = [] #Encuentra el item (libro o revista) y lo añade a una lista 
     for item in items:
-        if keyword.lower() in item.title.lower():
-            encontrar_item.append(item)
+        if keyword.lower() in item.title.lower(): #Dentro de los items y la busqueda pone todo en minuscula y busca por el titulo
+            encontrar_item.append(item) #Lo agrega a la lista
     return encontrar_item
 
 
